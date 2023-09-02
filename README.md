@@ -8,6 +8,75 @@ We are going to be using MySQL as our primary database since we need to associat
 
 The Front-End is initially going to be extremely minimal -- basic workflow as highlighted, we will use TailwindCSS with React(?), Vue(?). For the bundler Vite takes the cake for robustness
 
+> Well last time I tried yarn it was a huge pain getting it to work properly on my system, so we must see how that plays out
+
+The project is going to be organized as a monorepo managed via Yarn workspaces for the packages we are going to be having (subject to change)
+
+```
+==Back-End==
+| 3DScript | <- the api uses this to serialize 3D binary data to 3DScript
+===========
+
+==Front-End==
+| 3DScript  | <- the 3DScript is used to convert the 3DScript to some binary data
+=============
+```
+
+## API
+
+This doesn't include all, just the primary responses
+
+### POST /v1/scene/uploads
+
+```JavaScript
+{
+  "status": "success",
+  "data": {
+    "video_url": /* URL */,
+    "video_name": /* Filename */,
+    "video_size": /* Size in Kb */
+  },
+  "message": "Request completed successfully.",
+  "metadata": { }
+}
+```
+
+### POST /v1/scene
+
+```JavaScript
+{
+  "scene_name": "My Virtual World",
+  "scene_description": "A 3D representation of a closed environment",
+  "user_id": "6789",
+  "scene_data": {
+    "format": "glTF",
+    "file_url": "https://example.com/uploads/scene12345.gltf",
+    
+    // OR 
+    
+    "format": "3ds",
+    "content": /* undecided syntax */,
+  }
+}
+```
+
+```JavaScript
+{
+  "status": "success",
+  "data": {
+    "scene_id": "12345",
+    "scene_name": "My Virtual World",
+    "scene_status": "processing",
+  },
+  "message": "Request completed successfully.",
+  "metadata": {
+    "queue_position": 5,
+    "estimated_time": "10 minutes"
+  }
+}
+```
+
+
 ## Idea
 
 We consume a stereo video of a closed enviorment, we put this in a queue to be processed and eventually we make a sharable iframe(?) or a link avaliable such that the user can view a 3D virtual version of the enviorment
