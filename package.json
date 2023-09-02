@@ -1,8 +1,13 @@
 {
-  "name": "Untitled project",
-  "packageManager": "yarn@3.5.1",
-  "private": true,
+  "name": "untitled-project",
+  "version": "0.0.1",
   "workspaces": [
-    "packages/*"
-  ]
+    "packages/*",
+    "",
+    "server"
+  ],
+  "description": "This is an initial prototype for an app which can transform stereo videos into 3D enviorments, explorable within your browser",
+  "scripts": {},
+  "author": "Aadvik <aadv1k@outlook.com>",
+  "license": "MIT"
 }
