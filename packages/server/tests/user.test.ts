@@ -34,7 +34,18 @@ describe('User Authentication Tests', () => {
     expect(data.status).toBe(u.Status.ERROR);
   });
 
-  test.todo('should not allow duplicate user creation');
+  test.todo('should not allow duplicate user creation', async () => {
+        const response = await request(app)
+        .post('/v1/users')
+        .send(testUser);
+
+        const data = response.body;
+
+        expect(response.status).toBe(400);
+        expect(data.status).toBe(u.Status.ERROR);
+        expect(data.code).toBe(u.ErrorCode.USER_ALREADY_EXISTS);
+  });
+
   test.todo('should log in an existing user');
   test.todo('should reject an incorrect login');
   test.todo('should sign up a new user');

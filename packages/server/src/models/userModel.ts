@@ -1,11 +1,5 @@
 import knexInstance from "./instance";
-
-interface User {
-    id: string;
-    username: string;
-    email: string;
-    password: string;
-}
+import { User } from "../utils"
 
 class UserModel {
     private knex: Knex;

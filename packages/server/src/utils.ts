@@ -1,11 +1,26 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export enum Status {
     ERROR = "error",
     SUCCESS = "success",
 }
 
+export interface User {
+    id: string;
+    username: string;
+    email: string;
+    password: string;
+}
+
+export function createID() {
+    return uuidv4();
+}
+
 export enum ErrorCode {
   BAD_INPUT = "BAD_INPUT",
   AUTHENTICATION_ERROR = "AUTHENTICATION_ERROR",
+  USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS",
+  DATABASE_ERROR = "DATABASE_ERROR",
 }
 
 export interface SuccessResponse<T> {
