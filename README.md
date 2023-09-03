@@ -1,4 +1,6 @@
-# Untitled project 
+# RoomScan
+
+I really dislike the name and it is subject to change as the development proceeds, for the time being "RoomScan" is in alpha stage
 
 ## Tech
 

@@ -5,7 +5,6 @@ const userRouter = Router();
 
 import * as u from "../../utils";
 
-
 userRouter.post("/", (req: Request, res: Response) => {
   const postData = req.body;
   const userValid = userSchema.validateNewUser(postData);

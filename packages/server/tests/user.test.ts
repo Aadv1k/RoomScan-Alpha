@@ -3,10 +3,12 @@ import app from '../src/server';
 
 import { describe, beforeAll, afterAll, test, expect } from '@jest/globals';
 
+import * as u from "../src/utils"
+
 const testUser = {
     username: "john_doe",
     email: "example@example.com",
-    password: "foo@123" 
+    password: "foobar@123" 
 };
 
 describe('User Authentication Tests', () => {
@@ -18,14 +20,22 @@ describe('User Authentication Tests', () => {
     const data = response.body;
 
     expect(response.status).toBe(201);
-
-    // TODO: replace this more strongly typed instrinsics  
-    expect(data.status).toBe("success");
+    expect(data.status).toBe(u.Status.SUCCESS);
   })
+
+  test('should handle user creation failure gracefully', async () => {
+    const response = await request(app)
+      .post('/v1/users')
+      .send({"this": "should error"});
+
+    const data = response.body;
+
+    expect(response.status).toBe(400);
+    expect(data.status).toBe(u.Status.ERROR);
+  });
 
   test.todo('should not allow duplicate user creation');
   test.todo('should log in an existing user');
   test.todo('should reject an incorrect login');
   test.todo('should sign up a new user');
-  test.todo('should handle signup failure gracefully');
 });

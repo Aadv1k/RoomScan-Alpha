@@ -4,7 +4,6 @@ export default {
   validateNewUser: (data: any) => {
     return Joi.object({
       username: Joi.string()
-        .alphanum()
         .min(3)
         .max(30)
         .required()
@@ -12,7 +11,6 @@ export default {
 
       password: Joi.string()
         .min(8)
-        .pattern(new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'))
         .required(),
 
       email: Joi.string()
